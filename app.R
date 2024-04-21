@@ -66,11 +66,11 @@ server <- function(input, output) {
   output$table <- renderTable({
     tibble::tibble(
       "indicateur" = c(
-        'quotite finale',
-        'quotite theorique',
-        'revenus net',
-        'reste a charge',
-        'revenus restant'
+        'Quotité finale',
+        'Quotité théorique',
+        'Revenus nets',
+        'Reste à charge',
+        'Revenus restant'
       ),
       "Algorithme" = c(
         quotite_f(),
@@ -80,7 +80,7 @@ server <- function(input, output) {
         input$salaire - cout_edu()
       )
       ,
-      "Quotite alternative" = c(
+      "Quotité alternative" = c(
         quotite_af(),
         input$quotite_a,
         salaire_a(),
@@ -88,7 +88,7 @@ server <- function(input, output) {
         salaire_a() - cout_edu_a()
       )
       ,
-      "Difference" = c(
+      "Différence" = c(
         quotite_af() - quotite_f(),
         input$quotite_a - quotite_t(),
         salaire_a() - input$salaire,

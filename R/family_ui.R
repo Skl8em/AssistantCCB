@@ -9,7 +9,7 @@ familyUI <- function() {
                4,
                selectInput(
                  "famille",
-                 "type de famille",
+                 "Type de famille",
                  choices = c("monoparentale", "biparentale"),
                  selected = "biparentale"
                ),
@@ -21,7 +21,7 @@ familyUI <- function() {
                  max = 7,
                  step = 1
                ),
-               numericInput("salaire", "salaire net", 45000),
+               numericInput("salaire", "Revenus nets", 45000),
                numericInput("scolarite", "Frais stricts de scolarité", 15000),
                numericInput("periscolaire", "Frais parascolaires", 1000),
                numericInput("quotite_a", "Quotité théorique alternative", 0.1, min = 0, max = 1),
