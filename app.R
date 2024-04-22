@@ -13,90 +13,21 @@ library(shiny)
 ui <- fluidPage(
   # Application title
   titlePanel("Assistant pour membre des Conseils Consulaires des Bourses"),
-  tabsetPanel(parameterUI(),
-              familyUI(), )
+  fluidRow(column(4,
+                  tabsetPanel(
+                    parameterUI(),
+                    familyUI(),
+                  )),
+           column(6,
+                  # Show the resulting result table
+                  mainPanel(
+                    tableOutput("table")
+                  )))
 )
 
 # Define server logic required to draw a histogram
 server <- function(input, output) {
-  parents <- function() {
-    dplyr::case_match(input$famille,
-                      "monoparentale" ~ 1,
-                      "biparentale" ~ 2)
-  }
-  
-  part <- function() {
-    bourseAEFE::part(parents(), input$enfants)
-  }
-  quotite_f <- function() {
-    bourseAEFE::quotite_post_cps(input$salaire,
-                                 input$scolarite,
-                                 part(),
-                                 input$ippa,
-                                 input$tx,
-                                 input$cps)
-  }
-  quotite_t <- function() {
-    bourseAEFE::quotite_theorique(input$salaire,
-                                  input$scolarite,
-                                  part(),
-                                  input$ippa,
-                                  input$tx)
-  }
-  cout_edu <- function() {
-    (1 - quotite_f()) * (input$scolarite + input$periscolaire)
-  }
-  
-  quotite_af <- function() {
-    bourseAEFE::cps(input$quotite_a, input$cps)
-  }
-  cout_edu_a <- function() {
-    (1 - quotite_af()) * (input$scolarite + input$periscolaire)
-  }
-  salaire_a <- function() {
-    bourseAEFE::revenu_net_imp(quotite_af(),
-                               input$scolarite,
-                               part(),
-                               input$ippa,
-                               input$tx,
-                               input$cps)
-  }
-  
-  
-  output$table <- renderTable({
-    tibble::tibble(
-      "indicateur" = c(
-        'Quotité finale',
-        'Quotité théorique',
-        'Revenus nets',
-        'Reste à charge',
-        'Revenus restant'
-      ),
-      "Algorithme" = c(
-        quotite_f(),
-        quotite_t(),
-        input$salaire,
-        cout_edu(),
-        input$salaire - cout_edu()
-      )
-      ,
-      "Quotité alternative" = c(
-        quotite_af(),
-        input$quotite_a,
-        salaire_a(),
-        cout_edu_a(),
-        salaire_a() - cout_edu_a()
-      )
-      ,
-      "Différence" = c(
-        quotite_af() - quotite_f(),
-        input$quotite_a - quotite_t(),
-        salaire_a() - input$salaire,
-        cout_edu_a() - cout_edu(),
-        salaire_a() - cout_edu_a() - (input$salaire - cout_edu())
-      )
-    )
-  })
+  output$table <- renderTable(result_table(input))
   
 }
 
