@@ -21,13 +21,10 @@ familyUI <- function() {
     numericInput("salaire", "Revenus nets", 45000),
     numericInput("scolarite", "Frais stricts de scolarité", 15000),
     numericInput("periscolaire", "Frais parascolaires", 1000),
-    numericInput(
+    shinyWidgets::formatNumericInput(
       "quotite_a",
       "Quotité théorique alternative",
-      0.5,
-      min = 0,
-      max = 1
-    ),
+      0.5, format = "percentageEU2dec")
     
   )
 }
