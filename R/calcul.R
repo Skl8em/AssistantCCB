@@ -45,3 +45,24 @@ salaire_a <- function(input) {
                              input$tx,
                              input$cps)
 }
+
+quotite_fp <- function(input) {
+  bourseAEFE::quotite_post_cps(input$salaire,
+                               input$scolarite,
+                               part(input),
+                               input$ippa_prec,
+                               input$tx_prec,
+                               input$cps_prec)
+}
+
+quotite_tp <- function(input) {
+  bourseAEFE::quotite_theorique(input$salaire,
+                                input$scolarite,
+                                part(input),
+                                input$ippa_prec,
+                                input$tx_prec)
+}
+
+cout_edu_p <- function(input) {
+  (1 - quotite_fp(input)) * (input$scolarite + input$periscolaire)
+}

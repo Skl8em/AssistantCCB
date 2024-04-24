@@ -8,6 +8,8 @@
 #
 
 library(shiny)
+library(DT)
+
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(
@@ -21,14 +23,13 @@ ui <- fluidPage(
            column(6,
                   # Show the resulting result table
                   mainPanel(
-                    tableOutput("table")
+                    DT::DTOutput("table")
                   )))
 )
 
 # Define server logic required to draw a histogram
 server <- function(input, output) {
-  output$table <- renderTable(result_table(input))
-  
+  output$table <- DT::renderDT(result_table(input))
 }
 
 # Run the application
