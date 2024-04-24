@@ -24,7 +24,7 @@ familyUI <- function() {
     numericInput(
       "quotite_a",
       "Quotité théorique alternative",
-      0.1,
+      0.5,
       min = 0,
       max = 1
     ),
