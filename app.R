@@ -14,7 +14,7 @@ library(DT)
 # Define UI for application that draws a histogram
 ui <- fluidPage(
   # Application title
-  titlePanel("Assistant pour membre des Conseils Consulaires des Bourses"),
+  titlePanel("Assistant numérique pour membre des conseils consulaires des bourses scolaires"),
   fluidRow(column(4,
                   tabsetPanel(
                     parameterUI(),
