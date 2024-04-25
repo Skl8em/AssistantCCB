@@ -1,0 +1,17 @@
+Package: AssistantCCB
+Title: exploration des chiffres relatif à un dossier
+Version: 0.0.0.9000
+Authors@R: 
+    person("Benjamin", "Nakajima-Claverie", , "152368+Skl8em@users.noreply.github.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0009-0007-6342-8038"))
+Description: What the package does (one paragraph).
+License: GPL (>= 3)
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
+Imports: 
+    bourseAEFE,
+    dplyr,
+    DT,
+    pkgload,
+    shiny
