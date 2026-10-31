@@ -4,14 +4,25 @@ Version: 0.0.0.9000
 Authors@R: 
     person("Benjamin", "Nakajima-Claverie", , "152368+Skl8em@users.noreply.github.com", role = c("aut", "cre"),
            comment = c(ORCID = "0009-0007-6342-8038"))
-Description: What the package does (one paragraph).
+Description: Application Shiny d'aide aux membres des conseils consulaires des
+    bourses scolaires AEFE. Pour un dossier donné, elle compare la quotité de
+    bourse, les revenus et le reste à charge sous le régime précédent, sous
+    l'algorithme en vigueur et pour une quotité alternative. Les calculs sont
+    délégués au paquet bourseAEFE.
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
-Imports: 
-    bourseAEFE,
+Imports:
+    bourseAEFE (>= 0.1.0),
     dplyr,
     DT,
+    magrittr,
     pkgload,
-    shiny
+    shiny,
+    shinyWidgets,
+    tibble
+Remotes:
+    Skl8em/bourseAEFE@v0.1.0
+URL: https://github.com/Skl8em/AssistantCCB
+BugReports: https://github.com/Skl8em/AssistantCCB/issues
